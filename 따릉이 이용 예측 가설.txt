@@ -1,0 +1,29 @@
+id 고유 id
+hour 시간
+temperature 기온
+precipitation 비가 오지 않았으면 0, 비가 오면 1
+windspeed 풍속(평균)
+humidity 습도
+visibility 시정(視程), 시계(視界)(특정 기상 상태에 따른 가시성을 의미)
+ozone 오존
+pm10 미세먼지(머리카락 굵기의 1/5에서 1/7 크기의 미세먼지)
+pm2.5 미세먼지(머리카락 굵기의 1/20에서 1/30 크기의 미세먼지)
+count 시간에 따른 따릉이 대여 수
+
+1. heatmap
+-> hour, hour_bef_temperature, hour_bef_windspeed, hour_bef_visibility, hour_bef_ozone이
+count의 변화와 연관 관계가 크다는 것을 알 수 있음
+2. pairplot
+-> heatmap 에서 확인한 특성들이 선형적으로 증가하는 모습이 보임.
+여기서 hour_bef_precipitation이 0과 1로 이루어진 데이터라 다른 시각화가 필요
+3. countplot
+  -> hour_bef_precipitaion이 0.0일 때 count가 1400개, 1.0일 때 count가 100 이 나옴
+  hour_bef_precipitation도 count에 영향을 주지만 선형회귀에 관련된 문제이기 때문에 해당 피처는 제거하기로 결정함
+4. 결론
+hour, hour_bef_temperature, hour_bef_windspeed, hour_bef_ozone, hour_bef_precipitation
+위 특성들이 count에 관계가 있는 데이터라고 판단
+5. boxplot
+-> 선택한 특성들의 데이터에서 이상치가 있는지 확인
+-> NaN값을 0으로 채워서 최소값이 0인 특성들이 있음
+-> 박스플롯 최대값보다 큰 이상치들을 최대값으로 보정 + NaN값은 중간값으로 보정
+
