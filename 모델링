@@ -1,0 +1,96 @@
+# 모델링
+
+<br>
+
+데이터 EDA를 참고하여 데이터를 전처리하고
+
+그 데이터로 적합한 모델을 생성하고 학습시켜본다.
+
+이 문제는 여러 특성들을 가지고 count를 예측하는 문제이기 때문에 선형회귀 모델들을 사용한다.
+
+<br>
+
+![i1](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i1.png?raw=true)
+
+![i2](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i2.png?raw=true)
+
+필요한 패키지와 train 데이터를 불러온다.
+
+<br>
+
+![i3](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i3.png?raw=true)
+
+학습에 필요없는 특성들을 제거해주고 결측치를 각 특성의 중앙값으로 채워준다.
+
+결측치를 평균값이 아닌 중앙값으로 채워준 이유는 평균값은 높은 값들에 영향을 받아서 데이터가 쏠릴 수 있는 반면 중앙값은 이 데이터에서 가장 많이 분포하는 값이기 때문에 데이터의 분포에 큰 영향을 끼치지 않을 것 같아서이다.
+
+<br>
+
+![i4](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i4.png?raw=true)
+
+이상치가 존재하는 특성에서 이상치를 박스 플롯의 최대값으로 바꿔준다.
+
+<br>
+
+![i5](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i5.png?raw=true)
+
+x_data와 y_data를 설정한다. 스케일링 작업은 실행했을 때 점수가 더 낮게나와 우선 주석처리 했다.
+
+x_data와 y_data로 데이터를 분류해준다.
+
+<br>
+
+![i6](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i6.png?raw=true)
+
+첫번째로 랜덤포레스트 모델을 사용한다. 그리드서치를 활용해서 최적의 파라미터 값을 찾아준다.
+
+<br>
+
+![i7](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i7.png?raw=true)
+
+최적의 파라미터를 찾고 그 모델로 학습을 진행한다.
+
+mse를 확인해보면 약간의 과적합이 발생했고 전체적으로 높은 값이 나온다는 것을 알 수 있다.
+
+<br>
+
+![i8](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i8.png?raw=true)
+
+두번째로 XGBoost 모델을 사용한다.
+
+mse를 봤을 때 과적합이 발생한 것을 알 수 있다.
+
+<br>
+
+![i9](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i9.png?raw=true)
+
+세번째로 lasso 모델을 사용한다.
+
+기본적으로 학습이 잘 안되는 것을 볼 수 있다.
+
+<br>
+
+![i10](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i10.png?raw=true)
+
+네번째로 ridge 모델을 사용한다.
+
+lasso와 마찬가지로 학습이 잘 안되는 것을 볼 수 있다.
+
+<br>
+
+![i11](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/image%202/i11.png?raw=true)
+
+테스트 데이터를 불러와서 전처리한 후 예측값을 저장한다.
+
+이 저장한 파일을 dacon에 제출하면 점수를 알려준다.
+
+내가 받은 가장 높은 점수는 46.6 정도이고 모델을 튜닝하거나 데이터를 스케일링할 때마다 점수가 안좋아졌다.
+
+모델들마다 과적합이 일어나는데 데이터가 1000개 정도 밖에 없어서 발생하는 문제인 것 같다.
+
+지금 내가 가진 지식으로는 점수를 크게 높일 수는 없을 것 같다.
+
+데이터가 부족할 때 사용하는 기법이나 선형회귀 모델의 하이퍼파라미터 조정에 대해서 좀 더 공부하고 수정해봐야할 것 같다.
+
+
+
