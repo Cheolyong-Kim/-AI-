@@ -9,3 +9,4 @@
 목차
 
 1. [데이터 EDA](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/%EB%8D%B0%EC%9D%B4%ED%84%B0%20EDA.md)
+2. [모델링](https://github.com/Cheolyong-Kim/DACON-Prediction_of_Ttareungi_Bicycle_Use/blob/master/%EB%AA%A8%EB%8D%B8%EB%A7%81.md)
